@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bisection and False-position method</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Bisection and False-Position Method</h1>
+    </header>
+
+    <section class="container">
+        <div class="border">
+        <h2>Input User</h2>
+        <div>
+            <table class="user-input">
+                <tr>
+                    <td class="name">Drag Coefficient (c)</td>
+                    <td><input id="c" type="number" step="any" placeholder="0" required></td>
+                    <td>kg/s</td>
+                </tr>
+                <tr>
+                    <td class="name">Velocity (v)</td>
+                    <td><input id="v" type="number" step="any" placeholder="0" required></td>
+                    <td>m/s</td>
+                </tr>
+                <tr>
+                    <td class="name">Time (t)</td>
+                    <td><input id="t" type="number" step="any" placeholder="0" required></td>
+                    <td>s</td>
+                </tr>
+            </table>
+    
+            <table class="user-guess">
+                <tr>
+                    <td class="name">First Guess (xl)</td>
+                    <td><input id="xl" type="number" step="any" placeholder="0" required></td>
+                    <td>kg</td>
+                </tr>
+                <tr>
+                    <td class="name">Second Guess (xu)</td>
+                    <td><input id="xu" type="number" step="any" placeholder="0" required></td>
+                    <td>kg</td>
+                </tr>
+                <tr>
+                    <td class="name">Stopping Criterion (es)</td>
+                    <td><input id="es" type="number" step="any" placeholder="0" required></td>
+                    <td>%</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="button">
+            <input type="button" value="Bisection Method" onclick="generateTableBsc()" />
+            <input type="button" value="False-Position Method" onclick="generateTableFls()" />
+        </div>
+    </section>
+
+    <section class="calc-table">
+        <div>
+            <h3>Bisection Method Table</h3>
+            <table class="bsc-table table-style">
+                <thead>
+                    <tr>
+                        <th class="iter">iteration</th>
+                        <th>xl</th>
+                        <th>f(xl)</th>
+                        <th>xu</th>
+                        <th>f(xu)</th>
+                        <th>xr</th>
+                        <th>f(xr)</th>
+                        <th>ea</th>
+                    </tr>
+                </thead>
+                    <tbody id="tableDataBsc"></tbody>
+            </table>
+        </div>
+
+        <div>
+            <h3>False-Position Method Table</h3>
+            <table class="fls-table table-style">
+                <thead>
+                    <tr>
+                        <th class="iter">iteration</th>
+                        <th>xl</th>
+                        <th>f(xl)</th>
+                        <th>xu</th>
+                        <th>f(xu)</th>
+                        <th>xr</th>
+                        <th>f(xr)</th>
+                        <th>ea</th>
+                    </tr>
+                </thead>
+                    <tbody id="tableDataFls"></tbody>
+            </table>
+        </div>
+
+
+    <script src="./main.js"></script>
+</body>
+</html>
