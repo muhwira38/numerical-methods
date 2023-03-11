@@ -50,6 +50,43 @@ input::-webkit-inner-spin-button {
     margin-bottom: 15px;
 }
 
+button {
+    display: inline-block;
+    outline: 0;
+    border: none;
+    cursor: pointer;
+    line-height: 1.2rem;
+    font-weight: 500;
+    background: #007a5a;
+    padding: 8px 14px 9px;
+    font-size: 14px;
+    border-radius: 6px;
+    color: #fff;
+    height: 34px;
+    transition: all 75ms ease-in-out;
+    margin: 4px 3px;
+}
+
+button:hover{
+    box-shadow: 0 1px 4px rgb(0 0 0 / 40%);
+}
+
+.check-req {
+    margin-top: 40px;
+    margin-left: 8px;
+}
+
+.check-req p {
+    font-size: 16px;
+    font-weight: unset;
+    line-height: 10px;
+    color: rgb(35, 147, 153);
+}
+
+#fx-value p {
+    margin-left: 3px;
+}
+
 .calc-table {
     display: flex;
     flex-direction: column;
@@ -97,4 +134,10 @@ input::-webkit-inner-spin-button {
 
 .iter {
     width: 10px;
+}
+
+#massa-bsc p,
+#massa-fls p {
+    color: rgb(35, 147, 153);
+    font-weight: 600;
 }
