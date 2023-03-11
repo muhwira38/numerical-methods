@@ -2,8 +2,10 @@
 let tableBsc = [];
 let tableFls = [];
 
+
 // Nilai percepatan gravitasi (konstan)
 const g = 9.8
+
 
 // Fungsi f(x)
 function f(x) {
@@ -14,6 +16,7 @@ function f(x) {
 
     return (((g * x) / c) * (1 - Math.E**(-(c / x) * t))) - v;
 }
+
 
 // Bisection Algorithm
 function bisection(xl, xu, es) {
@@ -31,7 +34,6 @@ function bisection(xl, xu, es) {
             'xr': xr,
             'f(xr)': f(xr),
         };
-        console.log(iter, xl, f(xl), xu, f(xu), xr, f(xr))
 
         let ea = 0;
 
@@ -47,11 +49,13 @@ function bisection(xl, xu, es) {
         
         data.ea = ea;
         tableBsc.push(data);
+        document.getElementById('massa-bsc').innerHTML = `<p>Massa = ${xr}</p>`;
 
         iter = iter + 1;
         condition = ea > es;
     }
 }
+
 
 // False-position Algorithm
 function falsePosition(xl, xu, es) {
@@ -69,7 +73,6 @@ function falsePosition(xl, xu, es) {
             'xr': xr,
             'f(xr)': f(xr),
         };
-        console.log(iter, xl, f(xl), xu, f(xu), xr, f(xr))
 
         let ea = 0;
 
@@ -85,6 +88,7 @@ function falsePosition(xl, xu, es) {
         
         data.ea = ea;
         tableFls.push(data);
+        document.getElementById('massa-fls').innerHTML = `<p>Massa = ${xr}</p>`;
 
         iter = iter + 1;
         condition = ea > es;
@@ -92,20 +96,42 @@ function falsePosition(xl, xu, es) {
 }
 
 
-// Fungsi menampilkan tabel untuk perhitungan menggunakan bisection algorithm
-function generateTableBsc() {
-
-    // Menghapus isi dari tabel perhitungan bisection method jika terdapat value di dalamnya
-    if (tableBsc.length > 0) {
-        tableBsc.length = 0
-    }
-
+// Fungsi untuk menerima dan mengecek inputan tebakan dari user
+function inputGuess(method){
     let xl = Number(document.getElementById('xl').value);
     let xu = Number(document.getElementById('xu').value);
     let es = Number(document.getElementById('es').value);
 
-    bisection(xl, xu, es);
+    document.getElementById('fx-value').innerHTML = 
+        `<p>f(xl) = ${f(xl)}</p>` +
+        `<p>f(xu) = ${f(xu)}</p>`
 
+    // Mengecek apakah tebakan yang dimasukkan memenuhi syarat, jika ya jalankan metode bisection / false-position
+    if (f(xl) * f(xu) >= 0.0 || c === 0 ||t === 0) {
+        document.getElementById('message').innerHTML = 
+            "<p>Tebakan yang anda masukkan tidak memenuhi syarat.</p>" +
+            "<p>Silahkan masukkan tebakan lain.</p>";
+        alert("Tebakan yang anda masukkan tidak memenuhi syarat.\nSilahkan masukkan tebakan lain.")
+    } else {
+        console.log(f(xl))
+        document.getElementById('message').innerHTML = "<p>Tebakan anda memenuhi syarat.</p>";
+        method(xl,xu,es);
+    }
+}
+
+
+// Menampilkan tabel untuk perhitungan menggunakan bisection algorithm
+function generateTableBsc() {
+    // Menghapus perhitungan sebelumnya jika ada
+    if (tableBsc.length > 0) {
+        tableBsc.length = 0;
+        document.getElementById('massa-bsc').innerHTML = "";
+    }
+
+    // Memanggil fungsi untuk mendapatkan input user dan menghitungnya menggunakan False-position method
+    inputGuess(bisection);
+
+    // Membuat tabel perhitungan
     let k = '<tbody>'
     for(let i = 0;i < tableBsc.length; i++){
         k+= '<tr>';
@@ -123,21 +149,19 @@ function generateTableBsc() {
     document.getElementById('tableDataBsc').innerHTML = k;
 }
 
-// Fungsi menampilkan tabel untuk perhitungan menggunakan false-position algorithm
-function generateTableFls() {
 
-    // Menghapus isi dari tabel perhitungan false-position method jika terdapat value di dalamnya
+// Menampilkan tabel untuk perhitungan menggunakan false-position algorithm
+function generateTableFls() {
+    // Menghapus perhitungan sebelumnya jika ada
     if (tableFls.length > 0) {
-        tableFls.length = 0
+        tableFls.length = 0;
+        document.getElementById('massa-fls').innerHTML = "";
     }
     
-    // Mengambil nilai xl, xu, dan es dari inputan user
-    let xl = Number(document.getElementById('xl').value);
-    let xu = Number(document.getElementById('xu').value);
-    let es = Number(document.getElementById('es').value);
+    // Memanggil fungsi untuk mendapatkan input user dan menghitungnya menggunakan False-position method
+    inputGuess(falsePosition);
 
-    falsePosition(xl, xu, es);
-
+    // Membuat tabel perhitungan
     let k = '<tbody>'
     for(let i = 0;i < tableFls.length; i++){
         k+= '<tr>';
