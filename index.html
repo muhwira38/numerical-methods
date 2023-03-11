@@ -54,9 +54,14 @@
         </div>
 
         <div class="button">
-            <input type="button" value="Bisection Method" onclick="generateTableBsc()" />
-            <input type="button" value="False-Position Method" onclick="generateTableFls()" />
+            <button onclick="generateTableBsc()">Bisection Method</button>
+            <button onclick="generateTableFls()">False-Position Method</button>
         </div>
+    </section>
+
+    <section class="check-req">
+        <div id="fx-value"></div>
+        <div id="message"></div>
     </section>
 
     <section class="calc-table">
@@ -75,8 +80,9 @@
                         <th>ea</th>
                     </tr>
                 </thead>
-                    <tbody id="tableDataBsc"></tbody>
+                <tbody id="tableDataBsc"></tbody>
             </table>
+            <div id="massa-bsc"></div>
         </div>
 
         <div>
@@ -94,8 +100,9 @@
                         <th>ea</th>
                     </tr>
                 </thead>
-                    <tbody id="tableDataFls"></tbody>
+                <tbody id="tableDataFls"></tbody>
             </table>
+            <div id="massa-fls"></div>
         </div>
 
 
