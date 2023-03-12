@@ -113,9 +113,9 @@ function inputGuess(method){
     if (c == 0) {
         document.getElementById('message').innerHTML = 
             "<p>Nilai Drag Coefficient (c) tidak boleh 0.</p>" + "<p>Silahkan masukkan nilai Drag Coefficient (c).</p>";
-    } else if (xl == 0 || xu == 0) {
+    } else if (t == 0 && (xl == 0 || xu == 0)) {
         document.getElementById('message').innerHTML = 
-            "<p>Nilai Tebakan (xl atau xu) tidak boleh 0.</p>" + "<p>Silahkan masukkan tebakan anda.</p>";
+            "<p>Nilai Guess (xl atau xu) tidak boleh 0 jika Time (t) sama dengan 0.</p>" + "<p>Silahkan masukkan tebakan anda.</p>";
     } else if (f(xl) * f(xu) >= 0.0) {
         document.getElementById('message').innerHTML = 
             "<p>Tebakan yang anda masukkan tidak memenuhi syarat.</p>" +
