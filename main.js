@@ -116,6 +116,7 @@ function inputGuess(method){
     } else if (f(xl) * f(xu) >= 0.0) {
         document.getElementById('message').innerHTML = 
             "<p>Tebakan yang anda masukkan tidak memenuhi syarat.</p>" +
+            "<p>( Nilai f(xl) * f(xu) harus lebih dari 0 )" +
             "<p>Silahkan masukkan tebakan lain.</p>";
         alert("Tebakan yang anda masukkan tidak memenuhi syarat.\nSilahkan masukkan tebakan lain.")
     } else {
