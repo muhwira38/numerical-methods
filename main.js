@@ -110,9 +110,12 @@ function inputGuess(method){
         `<p>f(xu) = ${f(xu)}</p>`
 
     // Mengecek apakah tebakan yang dimasukkan memenuhi syarat, jika ya jalankan metode bisection / false-position
-    if (c == 0 ||t == 0) {
+    if (c == 0) {
         document.getElementById('message').innerHTML = 
-            "<p>Nilai Drag Coefficient (c) dan Time (t) tidak boleh 0.</p>" + "<p>Silahkan masukkan nilai Drag Coefficient (c) dan Time (t).</p>";
+            "<p>Nilai Drag Coefficient (c) tidak boleh 0.</p>" + "<p>Silahkan masukkan nilai Drag Coefficient (c).</p>";
+    } else if (xl == 0 || xu == 0) {
+        document.getElementById('message').innerHTML = 
+            "<p>Nilai Tebakan (xl atau xu) tidak boleh 0.</p>" + "<p>Silahkan masukkan tebakan anda.</p>";
     } else if (f(xl) * f(xu) >= 0.0) {
         document.getElementById('message').innerHTML = 
             "<p>Tebakan yang anda masukkan tidak memenuhi syarat.</p>" +
