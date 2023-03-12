@@ -101,13 +101,19 @@ function inputGuess(method){
     let xl = Number(document.getElementById('xl').value);
     let xu = Number(document.getElementById('xu').value);
     let es = Number(document.getElementById('es').value);
+    
+    let c = Number(document.getElementById('c').value);
+    let t = Number(document.getElementById('t').value);
 
     document.getElementById('fx-value').innerHTML = 
         `<p>f(xl) = ${f(xl)}</p>` +
         `<p>f(xu) = ${f(xu)}</p>`
 
     // Mengecek apakah tebakan yang dimasukkan memenuhi syarat, jika ya jalankan metode bisection / false-position
-    if (f(xl) * f(xu) >= 0.0 || c === 0 ||t === 0) {
+    if (c == 0 ||t == 0) {
+        document.getElementById('message').innerHTML = 
+            "<p>Nilai Drag Coefficient (c) dan Time (t) tidak boleh 0.</p>" + "<p>Silahkan masukkan nilai Drag Coefficient (c) dan Time (t).</p>";
+    } else if (f(xl) * f(xu) >= 0.0) {
         document.getElementById('message').innerHTML = 
             "<p>Tebakan yang anda masukkan tidak memenuhi syarat.</p>" +
             "<p>Silahkan masukkan tebakan lain.</p>";
