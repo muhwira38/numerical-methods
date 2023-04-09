@@ -18,13 +18,15 @@ function f(x) {
 }
 
 
-// Bisection Algorithm
+// Bisection method
 function bisection(xl, xu, es) {
     let iter = 1;
     let condition = true;
+    let xr = null;
+    let ea = null;
 
     while (condition) {
-        let xr = (xl + xu)/2;
+        xr = (xl + xu)/2;
         let data = {
             'iteration': iter,
             'xl': xl,
@@ -35,8 +37,6 @@ function bisection(xl, xu, es) {
             'f(xr)': f(xr),
         };
 
-        let ea = 0;
-
         if (f(xl) * f(xr) < 0) {
             ea = Math.abs(((xr - xu)/xr)*100);
             xu = xr;
@@ -46,14 +46,21 @@ function bisection(xl, xu, es) {
         } else {
             ea = 0;
         }
-        
-        data.ea = ea;
-        tableBsc.push(data);
-        document.getElementById('massa-bsc').innerHTML = `<p>Massa = ${xr}</p>`;
 
-        iter = iter + 1;
         condition = ea > es;
+
+        if(iter === 1){
+            ea = "";
+            condition = true;
+        }
+
+        tableBsc.push(data);
+        data.ea = ea;
+        
+        iter = iter + 1;
     }
+
+    document.getElementById('massa-bsc').innerHTML = `<p>X = ${xr}</p>`;
 }
 
 
@@ -61,9 +68,11 @@ function bisection(xl, xu, es) {
 function falsePosition(xl, xu, es) {
     let iter = 1;
     let condition = true;
+    let xr = null;
+    let ea = null;
 
     while (condition) {
-        let xr = xu - ((f(xu)*(xl - xu))/(f(xl)-f(xu)));
+        xr = xu - ((f(xu)*(xl - xu))/(f(xl)-f(xu)));
         let data = {
             'iteration': iter,
             'xl': xl,
@@ -73,8 +82,6 @@ function falsePosition(xl, xu, es) {
             'xr': xr,
             'f(xr)': f(xr),
         };
-
-        let ea = 0;
 
         if (f(xl) * f(xr) < 0) {
             ea = Math.abs(((xr - xu)/xr)*100);
@@ -86,13 +93,19 @@ function falsePosition(xl, xu, es) {
             ea = 0;
         }
         
+        condition = ea > es;
+        
+        if(iter === 1){
+            ea = "";
+            condition = true;
+        }
+        
         data.ea = ea;
         tableFls.push(data);
-        document.getElementById('massa-fls').innerHTML = `<p>Massa = ${xr}</p>`;
-
         iter = iter + 1;
-        condition = ea > es;
     }
+
+    document.getElementById('massa-fls').innerHTML = `<p>Massa = ${xr}</p>`;
 }
 
 
